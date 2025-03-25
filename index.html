@@ -6,8 +6,8 @@
     <title>Early Access Website</title>
     <style>
         body { font-family: Arial, sans-serif; }
-        #calculator { display: none; }
-        #welcome { display: none; }
+        #calculator, #rouletteTable { display: none; }
+        #welcome, #userArea { display: none; }
         button {
             padding: 10px 20px;
             font-size: 18px;
@@ -22,51 +22,55 @@
 </head>
 <body>
 
-<h1>Willkommen auf meiner Early Access Website</h1>
-
-<div id="welcome" style="display: block;">
+<div id="welcome">
     <h1>Lukas's Early Access Website</h1>
-    <div id="time" style="float: right;"></div>
-    <div style="clear: both;"></div>
-
-    <div id="userArea" style="display: none;">
-        <span id="usernameDisplay"></span>
-        <button onclick="logout()">Logout</button>
-    </div>
-
     <h2>Anmeldung</h2>
     <input type="text" id="username" placeholder="Benutzername" required>
     <input type="password" id="password" placeholder="Passwort" required>
     <button onclick="register()">Anmelden</button>
-
-    <div id="calculator" style="display: none;">
-        <input type="text" id="calcInput" placeholder="0" readonly>
-        <br>
-        <button onclick="appendToCalc('1')">1</button>
-        <button onclick="appendToCalc('2')">2</button>
-        <button onclick="appendToCalc('3')">3</button>
-        <button onclick="appendToCalc('+')">+</button>
-        <br>
-        <button onclick="appendToCalc('4')">4</button>
-        <button onclick="appendToCalc('5')">5</button>
-        <button onclick="appendToCalc('6')">6</button>
-        <button onclick="appendToCalc('-')">-</button>
-        <br>
-        <button onclick="appendToCalc('7')">7</button>
-        <button onclick="appendToCalc('8')">8</button>
-        <button onclick="appendToCalc('9')">9</button>
-        <button onclick="appendToCalc('*')">*</button>
-        <br>
-        <button onclick="clearCalc()">C</button>
-        <button onclick="calculate()">=</button>
-    </div>
+    <div id="errorMessage" style="color: red; display: none;">Bitte Benutzername und Passwort eingeben!</div>
 </div>
 
-<script src="script.js"></script>
+<div id="userArea">
+    <span id="usernameDisplay"></span>
+    <button onclick="logout()">Logout</button>
+</div>
+
+<div id="calculator" style="display: none;">
+    <h2>Rechner</h2>
+    <input type="text" id="calcInput" placeholder="0" readonly>
+    <br>
+    <button onclick="appendToCalc('1')">1</button>
+    <button onclick="appendToCalc('2')">2</button>
+    <button onclick="appendToCalc('3')">3</button>
+    <button onclick="appendToCalc('+')">+</button>
+    <br>
+    <button onclick="appendToCalc('4')">4</button>
+    <button onclick="appendToCalc('5')">5</button>
+    <button onclick="appendToCalc('6')">6</button>
+    <button onclick="appendToCalc('-')">-</button>
+    <br>
+    <button onclick="appendToCalc('7')">7</button>
+    <button onclick="appendToCalc('8')">8</button>
+    <button onclick="appendToCalc('9')">9</button>
+    <button onclick="appendToCalc('*')">*</button>
+    <br>
+    <button onclick="clearCalc()">C</button>
+    <button onclick="calculate()">=</button>
+</div>
+
+<!-- Roulette Tisch -->
+<div id="rouletteTable" style="display: none;">
+    <h2>Virtuelles Roulette</h2>
+    <button onclick="playRoulette()">Drehe das Rad!</button>
+    <div id="rouletteResult"></div>
+</div>
 
 <div>
     <a href="https://www.tiktok.com/@martoz.1" target="_blank">Folge mir auf TikTok: @martoz.1</a>
 </div>
+
+<script src="script.js"></script>
 
 </body>
 </html>
