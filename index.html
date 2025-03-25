@@ -16,9 +16,12 @@
 
 <div id="initial">
     <h1>Hallo, willkommen auf meiner Early Access Website.</h1>
-    <p>Möchtest du fortfahren?</p>
-    <button onclick="proceed()">JA</button>
-    <button onclick="decline()">NEIN</button>
+    <p>Um fortzufahren, drehe das Rad des Glücks!</p>
+    <div id="wheel" style="width: 200px; height: 200px; border-radius: 50%; border: 10px solid #5C6AC4; position: relative; overflow: hidden;">
+        <div id="pointer" style="position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 10px; height: 10px; background: #5C6AC4;"></div>
+    </div>
+    <button onclick="spinWheel()">Drehe das Rad!</button>
+    <div id="spinResult" style="display: none;"></div>
 </div>
 
 <div id="declineMessage" style="display: none;">
@@ -26,7 +29,7 @@
 </div>
 
 <div id="welcome">
-    <h1>Lukas's Early Access Website</h1>
+    <h1>Lukas's Early Access Website doch zu erst musst du Gambeln</h1>
     <div id="time" style="float: right;"></div>
     <div style="clear: both;"></div>
 
@@ -69,4 +72,3 @@
 </div>
 </body>
 </html>
-      
