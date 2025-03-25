@@ -8,19 +8,70 @@
         body { font-family: Arial, sans-serif; }
         #calculator { display: none; }
         #welcome { display: none; }
-        #weatherResult { margin-top: 20px; }
-        #weatherSection { display: none; }
+        .game-board {
+            display: grid;
+            grid-template-columns: repeat(4, 100px);
+            gap: 10px;
+            margin: 20px auto;
+            width: 450px;
+        }
+        .card {
+            width: 100px;
+            height: 100px;
+            background-color: #ccc;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .card.flipped {
+            background-color: #fff;
+        }
+        .card.matched {
+            background-color: #4CAF50;
+        }
+        #wheel {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            border: 10px solid #5C6AC4;
+            position: relative;
+            overflow: hidden;
+            margin: 20px auto;
+        }
+        #pointer {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 10px;
+            height: 10px;
+            background: #5C6AC4;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 18px;
+            cursor: pointer;
+            margin-top: 20px;
+            background-color: #5C6AC4;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
     </style>
 </head>
 <body>
 
+<h1>Willkommen auf meiner Early Access Website</h1>
 <div id="initial">
     <h1>Hallo, willkommen auf meiner Early Access Website.</h1>
     <p>Um fortzufahren, drehe das Rad des Glücks!</p>
-    <div id="wheel" style="width: 200px; height: 200px; border-radius: 50%; border: 10px solid #5C6AC4; position: relative; overflow: hidden;">
-        <div id="pointer" style="position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 10px; height: 10px; background: #5C6AC4;"></div>
+    <div id="wheel">
+        <div id="pointer"></div>
     </div>
-    <button onclick="spinWheel()">Drehe das Rad!</button>
+    <button onclick="spinRoulette()">Drehe das Rad!</button>
     <div id="spinResult" style="display: none;"></div>
 </div>
 
@@ -44,42 +95,31 @@
     <button onclick="register()">Anmelden</button>
 
     <div id="calculator" style="display: none;">
-        <input type="text" id="calcInput" placeholder="0" readonly>
-        <br>
-        <button onclick="appendToCalc('1')">1</button>
-        <button onclick="appendToCalc('2')">2</button>
-        <button onclick="appendToCalc('3')">3</button>
-        <button onclick="appendToCalc('+')">+</button>
-        <br>
-        <button onclick="appendToCalc('4')">4</button>
-        <button onclick="appendToCalc('5')">5</button>
-        <button onclick="appendToCalc('6')">6</button>
-        <button onclick="appendToCalc('-')">-</button>
-        <br>
-        <button onclick="appendToCalc('7')">7</button>
-        <button onclick="appendToCalc('8')">8</button>
-        <button onclick="appendToCalc('9')">9</button>
-        <button onclick="appendToCalc('*')">*</button>
-        <br>
-        <button onclick="clearCalc()">C</button>
-        <button onclick="calculate()">=</button>
+    <input type="text" id="calcInput" placeholder="0" readonly>
+    <br>
+    <button onclick="appendToCalc('1')">1</button>
+    <button onclick="appendToCalc('2')">2</button>
+    <button onclick="appendToCalc('3')">3</button>
+    <button onclick="appendToCalc('+')">+</button>
+    <br>
+    <button onclick="appendToCalc('4')">4</button>
+    <button onclick="appendToCalc('5')">5</button>
+    <button onclick="appendToCalc('6')">6</button>
+    <button onclick="appendToCalc('-')">-</button>
+    <br>
+    <button onclick="appendToCalc('7')">7</button>
+    <button onclick="appendToCalc('8')">8</button>
+    <button onclick="appendToCalc('9')">9</button>
+    <button onclick="appendToCalc('*')">*</button>
+    <br>
+    <button onclick="clearCalc()">C</button>
+    <button onclick="calculate()">=</button>
     </div>
+</div>
 
-    <!-- Neuer Bereich für die Wetterabfrage (sichtbar nach Anmeldung) -->
-    <div id="weatherSection">
-        <h3>Wetterabfrage</h3>
-        <input type="text" id="country" placeholder="z. B. Deutschland">
-        <button onclick="getWeather()">Wetter anzeigen</button>
-        <div id="weatherResult" style="display: none;">
-            <h3>Wetter in <span id="locationName"></span>:</h3>
-            <p id="temperature"></p>
-            <p id="weatherCondition"></p>
-        </div>
-    </div>
-
-    <script src="script.js"></script>
-    <div>
+<script src="script.js"></script>
+<div>
     <a href="https://www.tiktok.com/@martoz.1" target="_blank">Folge mir auf TikTok: @martoz.1</a>
-    </div>
+</div>
 </body>
 </html>
