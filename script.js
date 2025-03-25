@@ -58,3 +58,23 @@ function startTime() {
     document.getElementById("time").innerText = time;
     setTimeout(startTime, 1000);
 }
+
+function spinWheel() {
+    const winChance = Math.random(); // Generates a number between 0 and 1
+    const wheel = document.getElementById("wheel");
+    
+    // Add a random rotation between 2000 and 3000 degrees
+    const rotation = Math.floor(Math.random() * (3000 - 2000 + 1)) + 2000;
+    wheel.style.transform = `rotate(${rotation}deg)`;
+
+    setTimeout(() => {
+        if (winChance <= 0.5) { // 50% chance to win
+            document.getElementById('spinResult').innerHTML = "Herzlichen Glückwunsch! Du hast gewonnen!";
+            document.getElementById('welcome').style.display = "block"; // Show the welcome section
+            document.getElementById('initial').style.display = "none"; // Hide the initial section
+        } else {
+            document.getElementById('spinResult').innerHTML = "Leider hast du verloren. Versuche es erneut!";
+        }
+        document.getElementById('spinResult').style.display = "block"; // Show the spin result
+    }, 4000); // Delay for the spinning effect
+}
