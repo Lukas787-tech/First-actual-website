@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Early Access Website</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        #calculator { display: none; }
+        #welcome { display: none; }
+    </style>
+</head>
+<body><script.js
+  
+</script>
+
+<div id="initial">
+    <h1>Hallo, willkommen auf meiner Early Access Website.</h1>
+    <p>Möchtest du fortfahren?</p>
+    <button onclick="proceed()">JA</button>
+    <button onclick="decline()">NEIN</button>
+</div>
+
+<div id="declineMessage" style="display: none;">
+    <p>Schade, bis zum nächsten Mal!</p>
+</div>
+
+<div id="welcome">
+    <h1>Lukas's Early Access Website</h1>
+    <div id="time" style="float: right;"></div>
+    <div style="clear: both;"></div>
+
+    <div id="userArea" style="display: none;">
+        <span id="usernameDisplay"></span>
+        <button onclick="logout()">Logout</button>
+    </div>
+
+    <h2>Anmeldung</h2>
+    <input type="text" id="username" placeholder="Benutzername" required>
+    <input type="password" id="password" placeholder="Passwort" required>
+    <button onclick="register()">Anmelden</button>
+
+    <div id="calculator" style="display: none;">
+    <input type="text" id="calcInput" placeholder="0" readonly>
+    <br>
+    <button onclick="appendToCalc('1')">1</button>
+    <button onclick="appendToCalc('2')">2</button>
+    <button onclick="appendToCalc('3')">3</button>
+    <button onclick="appendToCalc('+')">+</button>
+    <br>
+    <button onclick="appendToCalc('4')">4</button>
+    <button onclick="appendToCalc('5')">5</button>
+    <button onclick="appendToCalc('6')">6</button>
+    <button onclick="appendToCalc('-')">-</button>
+    <br>
+    <button onclick="appendToCalc('7')">7</button>
+    <button onclick="appendToCalc('8')">8</button>
+    <button onclick="appendToCalc('9')">9</button>
+    <button onclick="appendToCalc('*')">*</button>
+    <br>
+    <button onclick="clearCalc()">C</button>
+    <button onclick="calculate()">=</button>
+</div>
+      
+
+    <script src="script.js"></script>
+    <div>
+    <a href="https://www.tiktok.com/@martoz.1" target="_blank">Folge mir auf TikTok: @martoz.1</a>
+</div>
+</body>
+</html>
+      
