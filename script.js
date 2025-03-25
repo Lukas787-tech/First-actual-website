@@ -1,55 +1,6 @@
 let username = "";
 let isLoggedIn = false;
 
-const apiKey = 'bd5e378503939ddaee76f12ad7a97608'; // Hier deinen OpenWeatherMap API-Schlüssel einfügen
-
-// Überprüft, ob Login-Daten in localStorage vorhanden sind und loggt automatisch ein
-window.onload = function() {
-    if (localStorage.getItem("username") && localStorage.getItem("password")) {
-        username = localStorage.getItem("username");
-        const password = localStorage.getItem("password");
-        login(username, password);
-    }
-}
-
-// Funktion zur Wetterabfrage
-async function getWeather() {
-    const country = document.getElementById("country").value;
-
-    if (!country) {
-        alert("Bitte gib ein Land ein.");
-        return;
-    }
-
-    // API URL mit dem eingegebenen Land
-    const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${country}&appid=${apiKey}&units=metric&lang=de`;
-
-    try {
-        const response = await fetch(apiUrl);
-        const data = await response.json();
-
-        if (data.cod === 200) {
-            // Wetterdaten erfolgreich erhalten
-            const locationName = data.name;
-            const temperature = data.main.temp;
-            const weatherCondition = data.weather[0].description;
-
-            // Anzeige der Wetterdaten
-            document.getElementById("locationName").innerText = locationName;
-            document.getElementById("temperature").innerText = `Temperatur: ${temperature}°C`;
-            document.getElementById("weatherCondition").innerText = `Wetter: ${weatherCondition}`;
-
-            document.getElementById("weatherResult").style.display = "block";
-        } else {
-            alert("Fehler: Land nicht gefunden.");
-            document.getElementById("weatherResult").style.display = "none";
-        }
-    } catch (error) {
-        console.error("Fehler beim Abrufen der Wetterdaten:", error);
-        alert("Es gab ein Problem beim Abrufen der Wetterdaten. Bitte versuche es später erneut.");
-    }
-}
-
 function proceed() {
     document.getElementById("initial").style.display = "none";
     document.getElementById("welcome").style.display = "block";
@@ -66,41 +17,21 @@ function register() {
     const password = document.getElementById("password").value;
 
     if (username && password) {
-        // Login-Daten speichern
-        localStorage.setItem("username", username);
-        localStorage.setItem("password", password);
-
         isLoggedIn = true;
-        login(username, password);
+        document.getElementById("usernameDisplay").innerText = `Willkommen, ${username}!`;
+        document.getElementById("userArea").style.display = "block";
+        document.getElementById("calculator").style.display = "block";
+        document.getElementById("username").value = "";
+        document.getElementById("password").value = "";
     } else {
         alert("Bitte Benutzername und Passwort eingeben.");
     }
 }
 
-function login(username, password) {
-    document.getElementById("usernameDisplay").innerText = `Willkommen, ${username}!`;
-    document.getElementById("userArea").style.display = "block";
-    document.getElementById("calculator").style.display = "block";
-    document.getElementById("username").value = "";
-    document.getElementById("password").value = "";
-    document.getElementById("welcome").style.display = "block";
-    document.getElementById("initial").style.display = "none";
-    
-    // Wetterbereich nach Login anzeigen
-    document.getElementById("weatherSection").style.display = "block";
-}
-
 function logout() {
-    // Login-Daten aus localStorage entfernen
-    localStorage.removeItem("username");
-    localStorage.removeItem("password");
-
     isLoggedIn = false;
     document.getElementById("welcome").style.display = "none";
     document.getElementById("initial").style.display = "block";
-    
-    // Wetterbereich nach Logout verstecken
-    document.getElementById("weatherSection").style.display = "none";
 }
 
 function appendToCalc(value) {
@@ -128,22 +59,31 @@ function startTime() {
     setTimeout(startTime, 1000);
 }
 
-function spinWheel() {
-    const winChance = Math.random();
-    const wheel = document.getElementById("wheel");
+// Virtuelles Roulette-Funktion
+function spinRoulette() {
+    const wheel = document.getElementById('wheel');
+    const resultMessage = document.getElementById('spinResult');
+    resultMessage.style.display = "none";
 
-    // Rotation des Rades
-    const rotation = Math.floor(Math.random() * (3000 - 2000 + 1)) + 2000;
+    // Zufällige Drehung generieren (zwischen 2000 und 3600 Grad)
+    const rotation = Math.floor(Math.random() * (3600 - 2000 + 1)) + 2000;
+    wheel.style.transition = "transform 4s ease-out";
     wheel.style.transform = `rotate(${rotation}deg)`;
 
+    // Das Ergebnis nach 4 Sekunden anzeigen
     setTimeout(() => {
-        if (winChance <= 0.5) {
-            document.getElementById('spinResult').innerHTML = "Herzlichen Glückwunsch! Du hast gewonnen!";
-            document.getElementById('welcome').style.display = "block";
-            document.getElementById('initial').style.display = "none";
+        const sector = Math.floor((rotation % 360) / 45); // Teilen des Rades in 8 Sektoren
+
+        // 0 bis 3 = Gewinn, 4 bis 7 = Verlust
+        if (sector >= 4) {
+            resultMessage.innerHTML = "Leider hast du verloren! Du wirst jetzt zu einem besonderen Video weitergeleitet...";
+            resultMessage.style.display = "block";
+            setTimeout(() => {
+                window.location.href = "https://www.youtube.com/watch?v=dQw4w9WgXcQ"; // Rickroll-Link
+            }, 2000); // 2 Sekunden Verzögerung bevor der Link geöffnet wird
         } else {
-            document.getElementById('spinResult').innerHTML = "Leider hast du verloren. Versuche es erneut!";
+            resultMessage.innerHTML = "Herzlichen Glückwunsch! Du hast gewonnen!";
+            resultMessage.style.display = "block";
         }
-        document.getElementById('spinResult').style.display = "block";
-    }, 4000);
+    }, 4000); // 4 Sekunden warten, bis das Ergebnis angezeigt wird
 }
