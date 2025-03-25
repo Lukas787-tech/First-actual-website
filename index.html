@@ -8,6 +8,7 @@
         body { font-family: Arial, sans-serif; }
         #calculator { display: none; }
         #welcome { display: none; }
+        #weatherResult { margin-top: 20px; }
     </style>
 </head>
 <body>
@@ -62,7 +63,19 @@
         <button onclick="clearCalc()">C</button>
         <button onclick="calculate()">=</button>
     </div>
-    
+
+    <!-- Neuer Bereich für die Wetterabfrage -->
+    <div id="weatherSection">
+        <h3>Wetterabfrage</h3>
+        <input type="text" id="country" placeholder="z. B. Deutschland">
+        <button onclick="getWeather()">Wetter anzeigen</button>
+        <div id="weatherResult" style="display: none;">
+            <h3>Wetter in <span id="locationName"></span>:</h3>
+            <p id="temperature"></p>
+            <p id="weatherCondition"></p>
+        </div>
+    </div>
+
     <script src="script.js"></script>
     <div>
     <a href="https://www.tiktok.com/@martoz.1" target="_blank">Folge mir auf TikTok: @martoz.1</a>
