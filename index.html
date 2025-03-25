@@ -8,24 +8,6 @@
         body { font-family: Arial, sans-serif; }
         #calculator { display: none; }
         #welcome { display: none; }
-        #wheel {
-            width: 200px;
-            height: 200px;
-            border-radius: 50%;
-            border: 10px solid #5C6AC4;
-            position: relative;
-            overflow: hidden;
-            margin: 20px auto;
-        }
-        #pointer {
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 10px;
-            height: 10px;
-            background: #5C6AC4;
-        }
         button {
             padding: 10px 20px;
             font-size: 18px;
@@ -41,22 +23,9 @@
 <body>
 
 <h1>Willkommen auf meiner Early Access Website</h1>
-<div id="initial">
-    <h1>Hallo, willkommen auf meiner Early Access Website.</h1>
-    <p>Um fortzufahren, drehe das Rad des Glücks!</p>
-    <div id="wheel">
-        <div id="pointer"></div>
-    </div>
-    <button onclick="spinRoulette()">Drehe das Rad!</button>
-    <div id="spinResult" style="display: none;"></div>
-</div>
-
-<div id="declineMessage" style="display: none;">
-    <p>Schade, bis zum nächsten Mal!</p>
-</div>
 
 <div id="welcome">
-    <h1>Lukas's Early Access Website doch zu erst musst du Gambeln</h1>
+    <h1>Lukas's Early Access Website</h1>
     <div id="time" style="float: right;"></div>
     <div style="clear: both;"></div>
 
@@ -71,29 +40,30 @@
     <button onclick="register()">Anmelden</button>
 
     <div id="calculator" style="display: none;">
-    <input type="text" id="calcInput" placeholder="0" readonly>
-    <br>
-    <button onclick="appendToCalc('1')">1</button>
-    <button onclick="appendToCalc('2')">2</button>
-    <button onclick="appendToCalc('3')">3</button>
-    <button onclick="appendToCalc('+')">+</button>
-    <br>
-    <button onclick="appendToCalc('4')">4</button>
-    <button onclick="appendToCalc('5')">5</button>
-    <button onclick="appendToCalc('6')">6</button>
-    <button onclick="appendToCalc('-')">-</button>
-    <br>
-    <button onclick="appendToCalc('7')">7</button>
-    <button onclick="appendToCalc('8')">8</button>
-    <button onclick="appendToCalc('9')">9</button>
-    <button onclick="appendToCalc('*')">*</button>
-    <br>
-    <button onclick="clearCalc()">C</button>
-    <button onclick="calculate()">=</button>
+        <input type="text" id="calcInput" placeholder="0" readonly>
+        <br>
+        <button onclick="appendToCalc('1')">1</button>
+        <button onclick="appendToCalc('2')">2</button>
+        <button onclick="appendToCalc('3')">3</button>
+        <button onclick="appendToCalc('+')">+</button>
+        <br>
+        <button onclick="appendToCalc('4')">4</button>
+        <button onclick="appendToCalc('5')">5</button>
+        <button onclick="appendToCalc('6')">6</button>
+        <button onclick="appendToCalc('-')">-</button>
+        <br>
+        <button onclick="appendToCalc('7')">7</button>
+        <button onclick="appendToCalc('8')">8</button>
+        <button onclick="appendToCalc('9')">9</button>
+        <button onclick="appendToCalc('*')">*</button>
+        <br>
+        <button onclick="clearCalc()">C</button>
+        <button onclick="calculate()">=</button>
     </div>
 </div>
 
 <script src="script.js"></script>
+
 <div>
     <a href="https://www.tiktok.com/@martoz.1" target="_blank">Folge mir auf TikTok: @martoz.1</a>
 </div>
