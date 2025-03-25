@@ -1,7 +1,7 @@
 let username = "";
 let isLoggedIn = false;
 
-const apiKey = 'DEIN_API_SCHLÜSSEL'; // Hier deinen OpenWeatherMap API-Schlüssel einfügen
+const apiKey = 'bd5e378503939ddaee76f12ad7a97608'; // Hier deinen OpenWeatherMap API-Schlüssel einfügen
 
 // Überprüft, ob Login-Daten in localStorage vorhanden sind und loggt automatisch ein
 window.onload = function() {
