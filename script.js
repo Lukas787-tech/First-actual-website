@@ -1,7 +1,7 @@
 let username = "";
 let isLoggedIn = false;
 
-const apiKey = 'Bd5e378503939ddaee76f12ad7a9760'; // Hier deinen OpenWeatherMap API-Schlüssel einfügen
+const apiKey = 'DEIN_API_SCHLÜSSEL'; // Hier deinen OpenWeatherMap API-Schlüssel einfügen
 
 // Überprüft, ob Login-Daten in localStorage vorhanden sind und loggt automatisch ein
 window.onload = function() {
@@ -85,6 +85,9 @@ function login(username, password) {
     document.getElementById("password").value = "";
     document.getElementById("welcome").style.display = "block";
     document.getElementById("initial").style.display = "none";
+    
+    // Wetterbereich nach Login anzeigen
+    document.getElementById("weatherSection").style.display = "block";
 }
 
 function logout() {
@@ -95,6 +98,9 @@ function logout() {
     isLoggedIn = false;
     document.getElementById("welcome").style.display = "none";
     document.getElementById("initial").style.display = "block";
+    
+    // Wetterbereich nach Logout verstecken
+    document.getElementById("weatherSection").style.display = "none";
 }
 
 function appendToCalc(value) {
