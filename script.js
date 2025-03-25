@@ -1,17 +1,6 @@
 let username = "";
 let isLoggedIn = false;
 
-function proceed() {
-    document.getElementById("initial").style.display = "none";
-    document.getElementById("welcome").style.display = "block";
-    startTime();
-}
-
-function decline() {
-    document.getElementById("initial").style.display = "none";
-    document.getElementById("declineMessage").style.display = "block";
-}
-
 function register() {
     username = document.getElementById("username").value;
     const password = document.getElementById("password").value;
