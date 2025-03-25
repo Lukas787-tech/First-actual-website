@@ -1,15 +1,39 @@
 let username = "";
 let isLoggedIn = false;
 
+window.onload = function() {
+    // Überprüfen, ob der Benutzer eingeloggt ist
+    const storedUsername = localStorage.getItem("username");
+    const storedPassword = localStorage.getItem("password");
+
+    if (storedUsername && storedPassword) {
+        // Wenn der Benutzer eingeloggt ist, zeige die Willkommensnachricht und den Rechner
+        document.getElementById("welcome").style.display = "none";
+        document.getElementById("userArea").style.display = "block";
+        document.getElementById("usernameDisplay").innerText = `Willkommen, ${storedUsername}!`;
+        document.getElementById("calculator").style.display = "block";
+    } else {
+        // Wenn der Benutzer nicht eingeloggt ist, zeige die Anmeldeseite
+        document.getElementById("welcome").style.display = "block";
+    }
+
+    startTime();
+}
+
 function register() {
     username = document.getElementById("username").value;
     const password = document.getElementById("password").value;
 
     if (username && password) {
+        // Benutzerdaten im localStorage speichern, um sie beim nächsten Besuch zu verwenden
+        localStorage.setItem("username", username);
+        localStorage.setItem("password", password);
+
         isLoggedIn = true;
         document.getElementById("usernameDisplay").innerText = `Willkommen, ${username}!`;
         document.getElementById("userArea").style.display = "block";
         document.getElementById("calculator").style.display = "block";
+        document.getElementById("welcome").style.display = "none"; // Versteckt die Anmeldeseite
         document.getElementById("username").value = "";
         document.getElementById("password").value = "";
     } else {
@@ -18,9 +42,14 @@ function register() {
 }
 
 function logout() {
+    // Beim Ausloggen den localStorage löschen
+    localStorage.removeItem("username");
+    localStorage.removeItem("password");
+
     isLoggedIn = false;
-    document.getElementById("welcome").style.display = "none";
-    document.getElementById("initial").style.display = "block";
+    document.getElementById("welcome").style.display = "block"; // Zeigt die Anmeldeseite
+    document.getElementById("userArea").style.display = "none"; // Versteckt den Benutzersbereich
+    document.getElementById("calculator").style.display = "none"; // Versteckt den Rechner
 }
 
 function appendToCalc(value) {
