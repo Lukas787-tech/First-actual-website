@@ -7,28 +7,38 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Willkommen und Anmeldebereich (unverändert) -->
+    <!-- Willkommen und Anmeldebereich -->
+    <div id="welcome" style="display: none;">
+        <h1>Lukas's Early Access Website</h1>
+        <h2>Anmeldung</h2>
+        <input type="text" id="username" placeholder="Benutzername" required>
+        <input type="password" id="password" placeholder="Passwort" required>
+        <button onclick="register()">Anmelden</button>
+        <div id="errorMessage" style="color: red; display: none;">Bitte Benutzername und Passwort eingeben!</div>
+    </div>
 
-    <div id="userArea">
-        <span id="usernameDisplay"></span>
+    <div id="userArea" style="display: none;">
+        <span id="usernameDisplay">Willkommen, ...</span>
         <button onclick="logout()">Logout</button>
     </div>
 
     <!-- Sidebar Menü -->
-    <div id="sidebar">
+    <div id="sidebar" style="display: none;">
         <ul>
             <li><button onclick="showCalculator()">Taschenrechner</button></li>
             <li><button onclick="showRoulette()">Virtuelles Roulette</button></li>
-            <li><button onclick="showSettings()">Einstellungen</button></li> <!-- Neuer Button für Einstellungen -->
+            <li><button onclick="showSettings()">Einstellungen</button></li>
         </ul>
     </div>
 
     <!-- Funktionen (Calculator & Roulette) -->
     <div id="calculator" style="display: none;">
+        <h2>Rechner</h2>
         <!-- ... der Taschenrechner-Inhalt ... -->
     </div>
 
     <div id="rouletteTable" style="display: none;">
+        <h2>Virtuelles Roulette</h2>
         <!-- ... der Roulette-Inhalt ... -->
     </div>
 
