@@ -5,7 +5,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Early Access Website</title>
     <style>
-        /* Hier kommen deine bestehenden Styles */
+        body { font-family: Arial, sans-serif; }
+        #calculator, #rouletteTable { display: none; }
+        #welcome, #userArea, #sidebar { display: none; }
+        button {
+            padding: 10px 20px;
+            font-size: 18px;
+            cursor: pointer;
+            margin-top: 20px;
+            background-color: #5C6AC4;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+        #sidebar {
+            background-color: #333;
+            width: 200px;
+            height: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            color: white;
+            padding: 20px;
+            display: none;
+        }
+        #sidebar ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        #sidebar ul li {
+            margin: 20px 0;
+        }
+        #sidebar ul li button {
+            background-color: #444;
+            color: white;
+            width: 100%;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+        }
+        #sidebar ul li button:hover {
+            background-color: #555;
+        }
     </style>
 </head>
 <body>
@@ -24,7 +65,7 @@
     </div>
 
     <!-- Sidebar Menü -->
-    <div id="sidebar" style="display: none;">
+    <div id="sidebar">
         <ul>
             <li><button onclick="showCalculator()">Taschenrechner</button></li>
             <li><button onclick="showRoulette()">Virtuelles Roulette</button></li>
@@ -64,6 +105,8 @@
     <div>
         <a href="https://www.tiktok.com/@martoz.1" target="_blank">Folge mir auf TikTok: @martoz.1</a>
     </div>
+
+    <div id="clock" style="margin-top: 20px;"></div>
 
     <script src="script.js"></script>
 </body>
