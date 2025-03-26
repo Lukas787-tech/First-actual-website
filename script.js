@@ -6,13 +6,23 @@ window.onload = function() {
     const storedPassword = localStorage.getItem("password");
 
     if (storedUsername && storedPassword) {
+        // Benutzer ist eingeloggt
+        username = storedUsername;
+        isLoggedIn = true;
+
+        // Setze Willkommensnachricht
+        document.getElementById("usernameDisplay").innerText = `Willkommen, ${username}!`;
+
+        // Zeige das Sidebar-Menü und Funktionen
         document.getElementById("welcome").style.display = "none";
         document.getElementById("userArea").style.display = "block";
-        document.getElementById("usernameDisplay").innerText = `Willkommen, ${storedUsername}!`;
         document.getElementById("sidebar").style.display = "block";
+        
+        // Lade und wende gespeicherte Einstellungen an
+        loadSettings();
         startClock();
-        loadSettings(); // Lade und wende gespeicherte Einstellungen an
     } else {
+        // Wenn der Benutzer nicht eingeloggt ist, zeige die Anmeldeseite
         document.getElementById("welcome").style.display = "block";
     }
 }
@@ -22,36 +32,40 @@ function register() {
     const password = document.getElementById("password").value;
 
     if (username && password) {
+        // Speichern der Anmeldedaten im localStorage
         localStorage.setItem("username", username);
         localStorage.setItem("password", password);
 
-        isLoggedIn = true;
+        // Zeige Willkommensnachricht
         document.getElementById("usernameDisplay").innerText = `Willkommen, ${username}!`;
+
+        // Zeige das Menü und Funktionen
         document.getElementById("userArea").style.display = "block";
         document.getElementById("sidebar").style.display = "block";
         document.getElementById("welcome").style.display = "none";
-        document.getElementById("username").value = "";
-        document.getElementById("password").value = "";
+        
+        // Lade und wende gespeicherte Einstellungen an
+        loadSettings();
         startClock();
-        loadSettings(); // Lade gespeicherte Einstellungen nach dem Login
     } else {
         document.getElementById("errorMessage").style.display = "block";
     }
 }
 
 function logout() {
+    // Lösche Anmeldedaten und Einstellungen
     localStorage.removeItem("username");
     localStorage.removeItem("password");
-    localStorage.removeItem("fontSize"); // Entfernt gespeicherte Einstellungen
+    localStorage.removeItem("fontSize");
     localStorage.removeItem("fontColor");
     localStorage.removeItem("bgColor");
     localStorage.removeItem("buttonSize");
 
+    // Benutzer ausloggen
     isLoggedIn = false;
     document.getElementById("welcome").style.display = "block";
     document.getElementById("userArea").style.display = "none";
     document.getElementById("sidebar").style.display = "none";
-    document.getElementById("errorMessage").style.display = "none";
     hideAllFunctions();
 }
 
@@ -70,14 +84,12 @@ function showSettings() {
     document.getElementById('settings').style.display = 'block';
 }
 
-// Funktion, um alle Funktionen auszublenden
 function hideAllFunctions() {
     document.getElementById('calculator').style.display = 'none';
     document.getElementById('rouletteTable').style.display = 'none';
     document.getElementById('settings').style.display = 'none';
 }
 
-// Funktion zum Speichern der Einstellungen
 function saveSettings() {
     const fontSize = document.getElementById("fontSize").value;
     const fontColor = document.getElementById("fontColor").value;
@@ -90,17 +102,17 @@ function saveSettings() {
     localStorage.setItem("bgColor", bgColor);
     localStorage.setItem("buttonSize", buttonSize);
 
-    applySettings(fontSize, fontColor, bgColor, buttonSize); // Wende die gespeicherten Einstellungen an
+    // Anwenden der gespeicherten Einstellungen
+    applySettings(fontSize, fontColor, bgColor, buttonSize);
 }
 
-// Funktion zum Laden und Anwenden der gespeicherten Einstellungen
 function loadSettings() {
     const savedFontSize = localStorage.getItem("fontSize");
     const savedFontColor = localStorage.getItem("fontColor");
     const savedBgColor = localStorage.getItem("bgColor");
     const savedButtonSize = localStorage.getItem("buttonSize");
 
-    // Standardwerte, wenn keine Einstellungen gespeichert sind
+    // Standardwerte
     const fontSize = savedFontSize || 16;
     const fontColor = savedFontColor || '#000000';
     const bgColor = savedBgColor || '#FFFFFF';
@@ -114,7 +126,6 @@ function loadSettings() {
     applySettings(fontSize, fontColor, bgColor, buttonSize);
 }
 
-// Funktion zum Anwenden der gespeicherten Einstellungen
 function applySettings(fontSize, fontColor, bgColor, buttonSize) {
     document.body.style.fontSize = fontSize + 'px';
     document.body.style.color = fontColor;
