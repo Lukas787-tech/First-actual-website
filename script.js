@@ -9,8 +9,6 @@ window.onload = function() {
         document.getElementById("welcome").style.display = "none";
         document.getElementById("userArea").style.display = "block";
         document.getElementById("usernameDisplay").innerText = `Willkommen, ${storedUsername}!`;
-        document.getElementById("calculator").style.display = "block";
-        document.getElementById("rouletteTable").style.display = "block";
         document.getElementById("sidebar").style.display = "block";
         startClock();
     } else {
@@ -29,8 +27,6 @@ function register() {
         isLoggedIn = true;
         document.getElementById("usernameDisplay").innerText = `Willkommen, ${username}!`;
         document.getElementById("userArea").style.display = "block";
-        document.getElementById("calculator").style.display = "block";
-        document.getElementById("rouletteTable").style.display = "block";
         document.getElementById("sidebar").style.display = "block";
         document.getElementById("welcome").style.display = "none";
         document.getElementById("username").value = "";
@@ -48,10 +44,9 @@ function logout() {
     isLoggedIn = false;
     document.getElementById("welcome").style.display = "block";
     document.getElementById("userArea").style.display = "none";
-    document.getElementById("calculator").style.display = "none";
-    document.getElementById("rouletteTable").style.display = "none";
     document.getElementById("sidebar").style.display = "none";
     document.getElementById("errorMessage").style.display = "none";
+    hideAllFunctions();  // Alle Funktionen verstecken
 }
 
 function appendToCalc(value) {
@@ -84,22 +79,4 @@ function playRoulette() {
             window.location.href = "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
         }, 2000);
     }
-}
-
-function startClock() {
-    setInterval(function() {
-        const date = new Date();
-        const options = { timeZone: 'Europe/Berlin', hour: '2-digit', minute: '2-digit', second: '2-digit' };
-        document.getElementById('clock').innerText = date.toLocaleTimeString('de-DE', options);
-    }, 1000);
-}
-
-function showCalculator() {
-    document.getElementById('calculator').style.display = 'block';
-    document.getElementById('rouletteTable').style.display = 'none';
-}
-
-function showRoulette() {
-    document.getElementById('calculator').style.display = 'none';
-    document.getElementById('rouletteTable').style.display = 'block';
 }
