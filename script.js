@@ -46,7 +46,7 @@ function logout() {
     document.getElementById("userArea").style.display = "none";
     document.getElementById("sidebar").style.display = "none";
     document.getElementById("errorMessage").style.display = "none";
-    hideAllFunctions();  // Alle Funktionen verstecken
+    hideAllFunctions();
 }
 
 function appendToCalc(value) {
@@ -79,4 +79,27 @@ function playRoulette() {
             window.location.href = "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
         }, 2000);
     }
+}
+
+function startClock() {
+    setInterval(function() {
+        const date = new Date();
+        const options = { timeZone: 'Europe/Berlin', hour: '2-digit', minute: '2-digit', second: '2-digit' };
+        document.getElementById('clock').innerText = date.toLocaleTimeString('de-DE', options);
+    }, 1000);
+}
+
+function showCalculator() {
+    hideAllFunctions();
+    document.getElementById('calculator').style.display = 'block';
+}
+
+function showRoulette() {
+    hideAllFunctions();
+    document.getElementById('rouletteTable').style.display = 'block';
+}
+
+function hideAllFunctions() {
+    document.getElementById('calculator').style.display = 'none';
+    document.getElementById('rouletteTable').style.display = 'none';
 }
