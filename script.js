@@ -146,3 +146,38 @@ function startClock() {
         document.getElementById('clock').innerText = date.toLocaleTimeString('de-DE', options);
     }, 1000);
 }
+
+// Taschenrechner Funktionen
+function appendToCalc(value) {
+    const calcInput = document.getElementById("calcInput");
+    calcInput.value += value;
+}
+
+function calculate() {
+    const calcInput = document.getElementById("calcInput");
+    try {
+        calcInput.value = eval(calcInput.value);
+    } catch (error) {
+        calcInput.value = "Fehler";
+    }
+}
+
+function clearCalc() {
+    document.getElementById("calcInput").value = "";
+}
+
+// Roulette Funktion
+function playRoulette() {
+    const winChance = Math.random(); // Generiert eine Zahl zwischen 0 und 1
+    const rouletteResult = document.getElementById("rouletteResult");
+
+    if (winChance <= 0.5) { // 50% Chance zu gewinnen
+        rouletteResult.innerHTML = "Herzlichen Glückwunsch! Du hast gewonnen!";
+    } else {
+        rouletteResult.innerHTML = "Leider verloren. Du wirst jetzt zum Rickroll weitergeleitet!";
+        // Weiterleitung zum Rickroll-Video
+        setTimeout(() => {
+            window.location.href = "https://www.youtube.com/watch?v=dQw4w9WgXcQ"; // Rickroll-Link
+        }, 2000);
+    }
+}
