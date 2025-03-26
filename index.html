@@ -31,18 +31,38 @@
         </ul>
     </div>
 
-    <!-- Funktionen (Calculator & Roulette) -->
+    <!-- Taschenrechner Bereich -->
     <div id="calculator" style="display: none;">
         <h2>Rechner</h2>
-        <!-- ... der Taschenrechner-Inhalt ... -->
+        <input type="text" id="calcInput" placeholder="0" readonly>
+        <br>
+        <button onclick="appendToCalc('1')">1</button>
+        <button onclick="appendToCalc('2')">2</button>
+        <button onclick="appendToCalc('3')">3</button>
+        <button onclick="appendToCalc('+')">+</button>
+        <br>
+        <button onclick="appendToCalc('4')">4</button>
+        <button onclick="appendToCalc('5')">5</button>
+        <button onclick="appendToCalc('6')">6</button>
+        <button onclick="appendToCalc('-')">-</button>
+        <br>
+        <button onclick="appendToCalc('7')">7</button>
+        <button onclick="appendToCalc('8')">8</button>
+        <button onclick="appendToCalc('9')">9</button>
+        <button onclick="appendToCalc('*')">*</button>
+        <br>
+        <button onclick="clearCalc()">C</button>
+        <button onclick="calculate()">=</button>
     </div>
 
+    <!-- Roulette Bereich -->
     <div id="rouletteTable" style="display: none;">
         <h2>Virtuelles Roulette</h2>
-        <!-- ... der Roulette-Inhalt ... -->
+        <button onclick="playRoulette()">Drehe das Rad!</button>
+        <div id="rouletteResult"></div>
     </div>
 
-    <!-- Einstellungen (neuer Bereich) -->
+    <!-- Einstellungen Bereich -->
     <div id="settings" style="display: none;">
         <h2>Einstellungen</h2>
 
