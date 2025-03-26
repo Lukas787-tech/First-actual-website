@@ -2,19 +2,18 @@ let username = "";
 let isLoggedIn = false;
 
 window.onload = function() {
-    // Überprüfen, ob der Benutzer eingeloggt ist
     const storedUsername = localStorage.getItem("username");
     const storedPassword = localStorage.getItem("password");
 
     if (storedUsername && storedPassword) {
-        // Wenn der Benutzer eingeloggt ist, zeige die Willkommensnachricht, den Rechner und den Roulette-Tisch
-        document.getElementById("welcome").style.display = "none"; // Versteckt Anmeldeseite
-        document.getElementById("userArea").style.display = "block"; // Zeigt Benutzerbereich
+        document.getElementById("welcome").style.display = "none";
+        document.getElementById("userArea").style.display = "block";
         document.getElementById("usernameDisplay").innerText = `Willkommen, ${storedUsername}!`;
-        document.getElementById("calculator").style.display = "block"; // Zeigt den Rechner
-        document.getElementById("rouletteTable").style.display = "block"; // Zeigt den Roulette-Tisch
+        document.getElementById("calculator").style.display = "block";
+        document.getElementById("rouletteTable").style.display = "block";
+        document.getElementById("sidebar").style.display = "block";
+        startClock();
     } else {
-        // Wenn der Benutzer nicht eingeloggt ist, zeige die Anmeldeseite
         document.getElementById("welcome").style.display = "block";
     }
 }
@@ -24,7 +23,6 @@ function register() {
     const password = document.getElementById("password").value;
 
     if (username && password) {
-        // Benutzerdaten im localStorage speichern, um sie beim nächsten Besuch zu verwenden
         localStorage.setItem("username", username);
         localStorage.setItem("password", password);
 
@@ -32,25 +30,28 @@ function register() {
         document.getElementById("usernameDisplay").innerText = `Willkommen, ${username}!`;
         document.getElementById("userArea").style.display = "block";
         document.getElementById("calculator").style.display = "block";
-        document.getElementById("rouletteTable").style.display = "block"; // Zeigt den Roulette-Tisch
-        document.getElementById("welcome").style.display = "none"; // Versteckt Anmeldeseite
+        document.getElementById("rouletteTable").style.display = "block";
+        document.getElementById("sidebar").style.display = "block";
+        document.getElementById("welcome").style.display = "none";
         document.getElementById("username").value = "";
         document.getElementById("password").value = "";
+        startClock();
     } else {
-        document.getElementById("errorMessage").style.display = "block"; // Zeigt Fehlernachricht
+        document.getElementById("errorMessage").style.display = "block";
     }
 }
 
 function logout() {
-    // Beim Ausloggen den localStorage löschen
     localStorage.removeItem("username");
     localStorage.removeItem("password");
 
     isLoggedIn = false;
-    document.getElementById("welcome").style.display = "block"; // Zeigt die Anmeldeseite
-    document.getElementById("userArea").style.display = "none"; // Versteckt den Benutzersbereich
-    document.getElementById("calculator").style.display = "none"; // Versteckt den Rechner
-    document.getElementById("rouletteTable").style.display = "none"; // Versteckt den Roulette-Tisch
+    document.getElementById("welcome").style.display = "block";
+    document.getElementById("userArea").style.display = "none";
+    document.getElementById("calculator").style.display = "none";
+    document.getElementById("rouletteTable").style.display = "none";
+    document.getElementById("sidebar").style.display = "none";
+    document.getElementById("errorMessage").style.display = "none";
 }
 
 function appendToCalc(value) {
@@ -72,16 +73,33 @@ function clearCalc() {
 }
 
 function playRoulette() {
-    const winChance = Math.random(); // Generiert eine Zahl zwischen 0 und 1
+    const winChance = Math.random();
     const rouletteResult = document.getElementById("rouletteResult");
 
-    if (winChance <= 0.5) { // 50% Chance zu gewinnen
+    if (winChance <= 0.5) {
         rouletteResult.innerHTML = "Herzlichen Glückwunsch! Du hast gewonnen!";
     } else {
         rouletteResult.innerHTML = "Leider verloren. Du wirst jetzt zum Rickroll weitergeleitet!";
-        // Weiterleitung zum Rickroll-Video
         setTimeout(() => {
-            window.location.href = "https://www.youtube.com/watch?v=dQw4w9WgXcQ"; // Rickroll-Link
+            window.location.href = "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
         }, 2000);
     }
+}
+
+function startClock() {
+    setInterval(function() {
+        const date = new Date();
+        const options = { timeZone: 'Europe/Berlin', hour: '2-digit', minute: '2-digit', second: '2-digit' };
+        document.getElementById('clock').innerText = date.toLocaleTimeString('de-DE', options);
+    }, 1000);
+}
+
+function showCalculator() {
+    document.getElementById('calculator').style.display = 'block';
+    document.getElementById('rouletteTable').style.display = 'none';
+}
+
+function showRoulette() {
+    document.getElementById('calculator').style.display = 'none';
+    document.getElementById('rouletteTable').style.display = 'block';
 }
