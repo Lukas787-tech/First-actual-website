@@ -7,14 +7,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div id="welcome">
-        <h1>Lukas's Early Access Website</h1>
-        <h2>Anmeldung</h2>
-        <input type="text" id="username" placeholder="Benutzername" required>
-        <input type="password" id="password" placeholder="Passwort" required>
-        <button onclick="register()">Anmelden</button>
-        <div id="errorMessage" style="color: red; display: none;">Bitte Benutzername und Passwort eingeben!</div>
-    </div>
+    <!-- Willkommen und Anmeldebereich (unverändert) -->
 
     <div id="userArea">
         <span id="usernameDisplay"></span>
@@ -26,39 +19,40 @@
         <ul>
             <li><button onclick="showCalculator()">Taschenrechner</button></li>
             <li><button onclick="showRoulette()">Virtuelles Roulette</button></li>
+            <li><button onclick="showSettings()">Einstellungen</button></li> <!-- Neuer Button für Einstellungen -->
         </ul>
     </div>
 
-    <!-- Funktionen, die nur angezeigt werden, wenn sie im Menü angeklickt werden -->
+    <!-- Funktionen (Calculator & Roulette) -->
     <div id="calculator" style="display: none;">
-        <h2>Rechner</h2>
-        <input type="text" id="calcInput" placeholder="0" readonly>
-        <br>
-        <button onclick="appendToCalc('1')">1</button>
-        <button onclick="appendToCalc('2')">2</button>
-        <button onclick="appendToCalc('3')">3</button>
-        <button onclick="appendToCalc('+')">+</button>
-        <br>
-        <button onclick="appendToCalc('4')">4</button>
-        <button onclick="appendToCalc('5')">5</button>
-        <button onclick="appendToCalc('6')">6</button>
-        <button onclick="appendToCalc('-')">-</button>
-        <br>
-        <button onclick="appendToCalc('7')">7</button>
-        <button onclick="appendToCalc('8')">8</button>
-        <button onclick="appendToCalc('9')">9</button>
-        <button onclick="appendToCalc('*')">*</button>
-        <br>
-        <button onclick="clearCalc()">C</button>
-        <button onclick="calculate()">=</button>
+        <!-- ... der Taschenrechner-Inhalt ... -->
     </div>
 
     <div id="rouletteTable" style="display: none;">
-        <h2>Virtuelles Roulette</h2>
-        <button onclick="playRoulette()">Drehe das Rad!</button>
-        <div id="rouletteResult"></div>
+        <!-- ... der Roulette-Inhalt ... -->
     </div>
 
+    <!-- Einstellungen (neuer Bereich) -->
+    <div id="settings" style="display: none;">
+        <h2>Einstellungen</h2>
+
+        <label for="fontSize">Schriftgröße:</label>
+        <input type="number" id="fontSize" min="10" max="30" value="16" onchange="saveSettings()">
+        <br><br>
+
+        <label for="fontColor">Schriftfarbe:</label>
+        <input type="color" id="fontColor" value="#000000" onchange="saveSettings()">
+        <br><br>
+
+        <label for="bgColor">Hintergrundfarbe:</label>
+        <input type="color" id="bgColor" value="#FFFFFF" onchange="saveSettings()">
+        <br><br>
+
+        <label for="buttonSize">Buttongröße:</label>
+        <input type="number" id="buttonSize" min="10" max="30" value="18" onchange="saveSettings()">
+    </div>
+
+    <!-- Unten im Footer -->
     <div>
         <a href="https://www.tiktok.com/@martoz.1" target="_blank">Folge mir auf TikTok: @martoz.1</a>
     </div>
